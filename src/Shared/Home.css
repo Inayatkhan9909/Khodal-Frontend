@@ -1,0 +1,130 @@
+.home-container {
+
+  width: 90vw;
+  margin: auto;
+
+}
+
+.home-navbar {
+  width: 15%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+
+  >ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  >ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  >ul li a {
+
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    width: 80%;
+    font-size: 1.2rem;
+  }
+
+  >ul li a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  >ul li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+}
+
+.home-content {
+  width: 50%;
+  min-height: 100vh;
+  margin: 0px 15vw;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 3vh;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.card h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.card img {
+  width: 90%;
+  height: 70%;
+
+  margin-bottom: 15px;
+  object-fit: cover;
+  margin: auto;
+}
+
+.post_heading {
+  position: relative;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  >button {
+    background-color: transparent;
+    border: none;
+    padding: 3px;
+  }
+}
+
+.caption-time {
+  width: 90%;
+
+}
+
+.reactioncount {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  gap: 6vw;
+}
+
+.like-comment {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  gap: 6vw;
+  margin-top: 1vh;
+}
+
+.comment {
+  position: relative;
+
+  >button {
+    border: none;
+  }
+}

@@ -1,0 +1,137 @@
+
+
+.form-main-container{
+    display: flex;
+    min-height: 90vh;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    gap: 5vw;
+    margin: auto;
+}
+
+.sideshow{
+    width: 40%;
+   
+
+    > p{
+        font-size: 1.2em;
+    }
+    
+}
+
+.form-container{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5vh;
+
+    > form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2vh;
+
+        >.input-div input{
+            padding: 10px 15px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            width: 50%;
+        }
+        
+        >.button-div button{
+            
+            
+            margin-left: 8vw;
+            padding: 8px 12px;
+            border-radius: 5px;
+            background-color: rgb(14, 14, 231);
+            border: none;
+            color:white;
+            font-size: 1.2em;
+        }
+        >.button-div button:hover{
+
+            background-color: rgb(7, 7, 165);
+         
+        }
+
+        >.alredyregistered span{
+                 margin-left: 2vw;
+                 font-size: 1.2em;
+        }
+        >.alredyregistered span a{
+                text-decoration: none;
+        }
+    }
+}
+
+
+
+/* Profile css */
+
+.profile-container{
+    width: 60vw;
+    margin: 6vh auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-div {
+    text-align: right;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .profile-details {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 60%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   >a{
+    color: black;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+   >a:hover{
+    color: blue;
+   
+}
+  }
+  
+  .profile-details span {
+    
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .profile-details span:first-child {
+    font-weight: bold;
+
+  
+  }
+  
+  button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
