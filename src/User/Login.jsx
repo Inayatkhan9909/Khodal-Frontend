@@ -15,31 +15,34 @@ const Login = () => {
         const { name, value } = e.target;
         setformdata({ ...formdata, [name]: value });
     }
-       
+
+    const message = useSelector(state => state.userLoginstore.message)
     const response = useSelector(state => state.userLoginstore)
-     const data= response.data
-        
+    const data = response.data
+
     const dispatch = useDispatch();
     const handlesubmit = async (e) => {
         e.preventDefault();
-      try {
-             
-       
-        dispatch(userLogin(formdata))
+        try {
 
-        if (data && data.message === "logged in successfully") {
-            localStorage.setItem('token', data.token);
-            toast.success(data.message);
-            navigate('/');
-        } else {
-            toast.error(data.message);
+
+          dispatch(userLogin(formdata))
+             console.log("lkjdsf "+data)
+            if ( message &&  message === "logged in successfully") {
+                localStorage.setItem('token', data.token);
+                toast.success(message);
+                navigate('/');
+            }
+            else { message && 
+                toast.error(message);
+                console.log(data)
+            }
+
         }
-        
-      }
-       catch (error) {
-          console.log(error);
-          toast.error("something went wrong");
-      }
+        catch (error) {
+            console.log(error);
+            toast.error("something went wrong");
+        }
 
 
 
@@ -84,12 +87,6 @@ const Login = () => {
                                 onChange={handlechange}
                             />
                         </div>
-                        {/* <div className="input-div">
-                    <input type="email" name="email"
-                        placeholder='email'
-
-                    />
-                </div> */}
 
                         <div className="input-div">
                             <input type="password" name="password"
@@ -103,7 +100,7 @@ const Login = () => {
                         </div>
 
                         <div className="alredyregistered">
-                            <span>Don't have Account? <Link to='/user/login'>Create one here</Link></span>
+                            <span>Don't have Account? <Link to='/user/register'>Create one here</Link></span>
                         </div>
                     </form>
                 </div>

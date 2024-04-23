@@ -14,14 +14,15 @@ export const getAllposts = () => async (action) => {
     const data = fuldata.data
     action({
       type: "success",
-      messagePayload: data.message,
-      dataPayload: data
+      message: data.message,
+      Payload: data
     });
 
   }
   catch (error) {
     action({
-      type: "failure"
+      type: "failure",
+      message:error.message
     })
 
   }
@@ -48,7 +49,7 @@ export const createPost = (formData) => async (action) => {
   catch (error) {
     action({
       type: "createPostFailure",
-      Payloadmessage: "something went wrong"
+      Payloadmessage: error.message
     });
   }
 
@@ -219,8 +220,8 @@ export const userLogin = (formData) => async (action) => {
 
     action({
       type: "userLoginSuccess",
-
-      Payloaddata: response.data
+      Payload: response.data,
+      message:response.data.message
     });
 
 
@@ -228,7 +229,7 @@ export const userLogin = (formData) => async (action) => {
   catch (error) {
     action({
       type: "userLoginFailure",
-      Payloaddata: { message: "somethingwent wrong" }
+      message: { message: "somethingwent wrong" }
     });
   }
 }

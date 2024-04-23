@@ -1,22 +1,22 @@
-
-*{
+* {
     margin: 0;
     padding: 0;
-    
+
 }
 
-body{
+body {
     background-color: #f1f1f1;
 }
+
 .navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 2vh 4vw;
     margin: auto;
     position: sticky;
-    top:0;
-    z-index: 10;
+    top: 0;
+    z-index: 100;
     background-color: white;
 }
 
@@ -26,13 +26,13 @@ body{
     align-items: center;
     border: 1px solid black;
     border-radius: 5px;
-    background-color: rgb(236, 239, 243);
-    padding: 10px;
+    background-color: rgb(244, 246, 248);
+    padding: 5px 10px;
 
     >input {
         border: none;
         padding: 5px;
-        background-color: rgb(236, 239, 243);
+        background-color: rgb(244, 246, 248);
         width: 25vw;
         outline: none;
     }
@@ -40,7 +40,7 @@ body{
     >.search-icon {
         width: 30px;
         height: 30px;
-        background-color: rgb(236, 239, 243);
+        background-color: rgb(244, 246, 248);
         cursor: pointer;
     }
 }
@@ -53,9 +53,145 @@ body{
 }
 
 
-.message-icon,
-.notification-icon,
-.profile-icon {
+.message-icon {
     width: 25px;
     height: 25px;
+}
+
+.profile-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.notification-icon {
+    width: 35px;
+    height: 35px;
+}
+.navbarfull_container_query{
+    display: none;
+}
+
+/*Div For query */
+
+@media screen and (max-width:600px) {
+    .navbar-container{
+        display: none;
+    }
+    .navbarfull_container_query{
+        display: initial;
+    }
+    .navbar1-container_query {
+        display: initial;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 2vh 4vw;
+        margin: 1vh auto;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background-color: white;
+    }
+    
+    .dropdown-div button {
+        border: none;
+        background-color: white;
+        position: relative;
+    
+        >.dropdown_icon {
+            background-color: white;
+            width: 30px;
+            height: 30px;
+        }
+    
+    }
+    
+    
+    .navbar-search_query {
+        width: 50vw;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: rgb(236, 239, 243);
+        padding: 5px 10px;
+    
+        >input {
+            border: none;
+            padding: 5px;
+            background-color: rgb(236, 239, 243);
+            width: 90%;
+            outline: none;
+        }
+    
+        >.search-icon {
+            width: 30px;
+            height: 30px;
+            background-color: rgb(236, 239, 243);
+            cursor: pointer;
+        }
+    
+    }
+}
+
+
+
+ /* Dropdown css */
+
+
+.dropdown_container{
+
+    width: 60vw;
+    position: absolute;
+    top:8vh;
+    right: 1vh;
+    background-color:rgb(236, 239, 243) ;
+
+    >ul{
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap:4vh;
+        padding:15px;
+        width: 80%;
+
+
+       >li{
+        width: 80%;
+       }
+
+        >li a{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap:10px;
+            text-decoration: none;
+            font-size: 1.2em;
+            color: black;
+            width: 100%;
+        }
+        >li a:hover{
+            background-color: gray; 
+            color: wheat;
+          }
+    }
+
+
+    .logout-button {
+        padding: 6px 12px;
+        background-color: rgb(108, 107, 107);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    
+    .logout-button:hover {
+        background-color: rgb(86, 85, 85);
+    }
 }

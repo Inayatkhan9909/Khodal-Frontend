@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "./Form.css"
-
 import { ToastContainer, toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { userRegister } from '../Redux/actions';
@@ -11,6 +10,7 @@ const Register = () => {
 
     const navigate = useNavigate();
     const [formdata, setformdata] = useState({
+        fullname:"",
         username: "",
         email: "",
         password: ""
@@ -28,14 +28,18 @@ const Register = () => {
         e.preventDefault();
 
         dispatch(userRegister(formdata))
+        console.log(response)
         if(response.message === "Registration successfull")
         {
             toast.success(response.message);
             console.log(response.message);
             navigate('/user/login');
         }
-        toast.error(response.message);
-        console.log(response.message)
+        else{
+            toast.error(response.message);
+            console.log(response.message)
+        }
+      
        
 
     }
@@ -67,8 +71,14 @@ const Register = () => {
                     <form onSubmit={handlesubmit}>
 
                         <div className="input-div">
+                            <input type="text" name="fullname"
+                                placeholder='Full Name'
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="input-div">
                             <input type="text" name="username"
-                                placeholder='username'
+                                placeholder='Username'
                                 onChange={handleChange}
                             />
                         </div>

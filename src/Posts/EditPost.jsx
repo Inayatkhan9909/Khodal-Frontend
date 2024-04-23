@@ -38,7 +38,7 @@ const EditPost = () => {
             console.log("no post id found")
         }
 
-    }, [dispatch])
+    }, [dispatch,postId])
 
     const data = useSelector((state) => state.getpostbyIdstore.data)
     const response = useSelector((state) => state.editpoststore)

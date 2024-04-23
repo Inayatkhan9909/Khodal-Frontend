@@ -24,7 +24,7 @@ const SinglePost = () => {
                 setsinglepost(foundPost);
             }
         }
-    }, [data, postId]);
+    }, [data,posts.posts, postId]);
     console.log(singlepost)
 
     return (

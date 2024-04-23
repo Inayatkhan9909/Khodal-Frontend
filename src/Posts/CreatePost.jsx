@@ -8,7 +8,7 @@ import "./Post.css"
 const CreatePost = () => {
 
     IsAuthenticated();
-
+    const dispatch = useDispatch();
     const [token, settoken] = useState('');
     const [caption, setcaption] = useState('');
     const [image, setimage] = useState(null);
@@ -31,10 +31,7 @@ const CreatePost = () => {
     formData.append('caption', caption);
     formData.append('image', image);
 
-    const dispatch = useDispatch();
-
-
-
+  
 
     useEffect(() => {
 
@@ -45,16 +42,19 @@ const CreatePost = () => {
             settoken(storedtoken);
         }
 
-    }, [])
+    },[])
 
-    const response = useSelector((state) => state.createPost)
-    console.log(response.data)
+    const response = useSelector((state) => state.createPost.message)
+    if(response)
+    {
+        console.log(response)
+    }
     const handlesubmit = async (e) => {
         e.preventDefault();
         dispatch(createPost(formData))
-        await toast.success(response.message)
-       
-
+       if(response){
+        toast.success(response)
+       }
     }
 
 

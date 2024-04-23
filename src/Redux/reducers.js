@@ -4,19 +4,19 @@ import { createReducer } from "@reduxjs/toolkit";
 export const getPostsreducer = createReducer({}, (builder) => {
 
     builder
-        .addCase("request", (state, action) => {
+        .addCase("request", (state) => {
             state.loading = true
         })
 
         .addCase("success", (state, action) => {
             state.loading = false
-            state.posts = action.dataPayload
-            state.message = action.messagePayload
+            state.posts = action.Payload
+            state.message = action.message
         })
 
         .addCase("failure", (state, action) => {
             state.loading = false
-            state.message = action.messagePayload
+            state.message = action.message
         })
 })
 
@@ -30,13 +30,13 @@ export const createPostreducer = createReducer({}, (builder) => {
 
         .addCase("createPostSuccess", (state, action) => {
             state.loading = false
-            state.data = action.PayloadData
-            state.message = action.Payloadmessage
+            state.data = action.Payload
+            state.message = action.message
         })
 
         .addCase("createPostFailure", (state, action) => {
             state.loading = false
-            state.message = action.Payloadmessage
+            state.message = action.message
         })
 })
 
@@ -135,12 +135,13 @@ export const userLoginreducer = createReducer({}, (builder) => {
     })
         .addCase("userLoginSuccess", (state, action) => {
             state.loading = false
-            state.data = action.Payloaddata
+            state.data = action.Payload
+            state.message = action.message
 
         })
         .addCase("userLoginFailure", (state, action) => {
             state.loading = false
-            state.data = action.Payloaddata
+            state.message = action.message
         })
 })
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { MdOutlineAddBox } from "react-icons/md";
 import "./Home.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { AddLikeaction, getAllposts } from '../Redux/actions';
@@ -8,9 +7,15 @@ import { BsThreeDots } from "react-icons/bs";
 import ModifyPost from '../Posts/ModifyPost';
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
+import { IoHomeOutline, IoSettingsOutline } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
+import { BsCameraReels } from "react-icons/bs";
+import { CiSquarePlus } from "react-icons/ci";
+import { LiaUserFriendsSolid } from "react-icons/lia";
 import Loading from './Loading';
 import { jwtDecode } from 'jwt-decode';
 import Comments from '../Posts/Comments';
+import timeAgo from '../utils/time';
 
 
 
@@ -69,7 +74,7 @@ const Home = () => {
         else {
             setchangeLikedata(changeLikedata)
         }
-            
+
         setLikedPosts(prevLikedPosts => {
             const newLikedPosts = [...prevLikedPosts];
             newLikedPosts[index] = !newLikedPosts[index];
@@ -79,47 +84,10 @@ const Home = () => {
     }
 
 
-
     const handleComment = (index) => {
-
 
         setshowcommentIndex(prevIndex => prevIndex === index ? null : index);
     }
-
-    function timeAgo(timestamp) {
-        const currentTime = new Date();
-        const postTime = new Date(timestamp);
-        const elapsedMilliseconds = currentTime - postTime;
-        const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
-        const elapsedMinutes = Math.floor(elapsedSeconds / 60);
-        const elapsedHours = Math.floor(elapsedMinutes / 60);
-        const elapsedDays = Math.floor(elapsedHours / 24);
-        const elapsedWeeks = Math.floor(elapsedDays / 7);
-        const elapsedMonths = Math.floor(elapsedDays / 30);
-
-        if (elapsedSeconds < 60) {
-            return 'just now';
-        } else if (elapsedMinutes < 60) {
-            return `${elapsedMinutes} minute${elapsedMinutes > 1 ? 's' : ''} ago`;
-        } else if (elapsedHours < 24) {
-            return `${elapsedHours} hour${elapsedHours > 1 ? 's' : ''} ago`;
-        } else if (elapsedDays === 1) {
-            return 'yesterday';
-        } else if (elapsedDays < 7) {
-            return `${elapsedDays} day${elapsedDays > 1 ? 's' : ''} ago`;
-        } else if (elapsedWeeks === 1) {
-            return '1 week ago';
-        } else if (elapsedWeeks < 4) {
-            return `${elapsedWeeks} weeks ago`;
-        } else if (elapsedMonths === 1) {
-            return '1 month ago';
-        } else if (elapsedMonths < 12) {
-            return `${elapsedMonths} months ago`;
-        } else {
-            return postTime.toLocaleD
-        }
-    }
-
 
     return (
         <>
@@ -129,27 +97,15 @@ const Home = () => {
 
                 <div className="home-navbar">
                     <ul>
-                        <li>
-                            <Link to=''>Home</Link>
-                        </li>
-                        <li>
-                            <Link to=''>Reels</Link>
-                        </li>
-                        <li>
-                            <Link to='/user/createpost'> < MdOutlineAddBox /> Create</Link>
-                        </li>
-                        <li>
-                            <Link to=''>Friends</Link>
-                        </li>
-                        <li>
-                            <Link to=''>Groups</Link>
-                        </li>
-                        <li>
-                            <Link to=''>Settings</Link>
-                        </li>
+
+                        <li><Link to=""><span><IoHomeOutline /></span><span>Home</span></Link></li>
+                        <li><Link to="">< BsCameraReels /><span>Reels</span></Link></li>
+                        <li><Link to="/user/createpost"><CiSquarePlus /><span>Create</span></Link></li>
+                        <li><Link to=""><CgProfile /><span>Profile</span></Link></li>
+                        <li><Link to=""><LiaUserFriendsSolid /><span>Friends</span></Link></li>
+                        <li><Link to=""><IoSettingsOutline /><span>Settings</span></Link></li>
 
                     </ul>
-
 
                 </div>
 
@@ -163,7 +119,7 @@ const Home = () => {
                             <div className="card" key={index}>
                                 <div className="post_heading">
 
-                                    <h4>{post.author}</h4>
+                                    <div className='username_postadded'><h3>{post.author}</h3> <span> added a new post</span></div>
                                     <button onClick={() => handlemodify(index)}> <BsThreeDots size={22} /></button>
                                     {showmodifyindex === index ? <ModifyPost postId={post._id} /> : null}
 
@@ -174,7 +130,9 @@ const Home = () => {
                                     <p>{post.caption}</p>
 
                                 </div>
-                                <img src={post.imageurl} width={100} alt="no" />
+                                <div className="post_image_container">
+                                    <img src={post.imageurl} width={100} alt="no" />
+                                </div>
 
                                 <div className="reactioncount">
 
@@ -191,9 +149,8 @@ const Home = () => {
                                     <div className="comment">
                                         <button onClick={() => handleComment(index)}> <FaRegComment size={30} /></button>
                                         {showcommentIndex === index && <Comments showcommentIndex={showcommentIndex} setshowcommentIndex={setshowcommentIndex}
-                                            postId={post._id} username={post.author} />}
+                                            postId={post._id} />}
                                     </div>
-
 
                                 </div>
                             </div>
@@ -202,15 +159,9 @@ const Home = () => {
 
                     }
 
-
                 </div>
 
-
-
             </div>
-
-
-
 
 
         </>

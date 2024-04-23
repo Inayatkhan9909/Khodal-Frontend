@@ -6,6 +6,7 @@ import { BsShare } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { DeletePost } from '../Redux/actions';
+import { ToastContainer,toast } from 'react-toastify';
 
 
 const ModifyPost = ({ postId }) => {
@@ -14,7 +15,7 @@ const ModifyPost = ({ postId }) => {
     const dispatch = useDispatch();
 
     const response = useSelector((state) => state.deletePoststore);
-
+    console.log(response)
     const handledelete = () => {
 
         const confirmed = window.confirm("Are you sure you want to delete this post?");
@@ -25,11 +26,11 @@ const ModifyPost = ({ postId }) => {
             navigate("/")
             console.log(response);
             if (response === "post deleted succesfully") {
-                // toast.success(response.data.message)
+                toast.success(response)
                 navigate("/")
             }
             else {
-                // toast.error(response.data.message)
+                toast.error(response)
             }
         }
         else {
@@ -48,24 +49,40 @@ const ModifyPost = ({ postId }) => {
     }
 
     return (
-        <div className='ModifyPost_container'>
+        <>
 
-            <ul>
-                <li >
-                    <button onClick={handledelete}><MdDelete /> Delete</button>
-                </li>
-                <li>
-                    <button onClick={handleEdit}><CiEdit /> Edit</button>
-                </li>
-                <li>
-                    <button onClick={handleviewpost}>viewpost</button>
-                </li>
-                <li>
-                    <button><BsShare /> share</button>
-                </li>
-            </ul>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
+            <div className='ModifyPost_container'>
 
-        </div>
+                <ul>
+                    <li >
+                        <button onClick={handledelete}><MdDelete /> Delete</button>
+                    </li>
+                    <li>
+                        <button onClick={handleEdit}><CiEdit /> Edit</button>
+                    </li>
+                    <li>
+                        <button onClick={handleviewpost}>viewpost</button>
+                    </li>
+                    <li>
+                        <button><BsShare /> share</button>
+                    </li>
+                </ul>
+
+            </div>
+
+        </>
     )
 }
 
