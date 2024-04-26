@@ -20,9 +20,13 @@ const Navbar = () => {
 
             <div className='navbar-container'>
 
-                <div className="app-title">
+              <Link to="/">
+              <div className="app-title">
                     <h1>Khodal</h1>
                 </div>
+              </Link>
+            
+           
                 <div className="navbar-search">
                     <input type="text"
                         placeholder='search'

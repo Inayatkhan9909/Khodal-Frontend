@@ -149,13 +149,28 @@ export const GetProfilereducer = createReducer({}, (builder) => {
     builder.addCase("GetProfileRequest", (state) => {
         state.loading = true
     })
-    .addCase("GetProfileSuccess", (state, action) => {
-        state.loading = false
-        state.data = action.Payload
-        state.message = action.message
+        .addCase("GetProfileSuccess", (state, action) => {
+            state.loading = false
+            state.data = action.Payload
+            state.message = action.message
+        })
+        .addCase("GetProfileFailure", (state, action) => {
+            state.loading = false
+            state.message = action.message
+        })
+});
+
+export const getReelsreducer = createReducer({}, (builder) => {
+    builder.addCase("getReelsRequest", (state) => {
+        state.loading = true
     })
-    .addCase("GetProfileFailure", (state, action) => {
-        state.loading = false
-        state.message = action.message
-    })
-})
+        .addCase("getReelsSuccess", (state, action) => {
+            state.loading = false
+            state.data = action.Payload
+            state.message = action.message
+        })
+        .addCase("getReelsFailure", (state, action) => {
+            state.loading = false
+            state.message = action.message
+        })
+});

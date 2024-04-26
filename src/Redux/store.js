@@ -2,7 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import {
        getPostsreducer, createPostreducer, userRegisterreducer,
        userLoginreducer, DeletePostreducer, GetPostbyIdreducer,
-       EditPostreducer, AddLikereducer, Addcommentreducer, GetProfilereducer
+       EditPostreducer, AddLikereducer, Addcommentreducer, GetProfilereducer,
+       getReelsreducer
 } from "./reducers";
 
 
@@ -18,6 +19,7 @@ export const store = configureStore({
               editpoststore: EditPostreducer,
               AddlikeStore: AddLikereducer,
               AddcommentStore: Addcommentreducer,
-              AddProfileStore: GetProfilereducer
+              AddProfileStore: GetProfilereducer,
+              getReelsStore:getReelsreducer 
        }
 });

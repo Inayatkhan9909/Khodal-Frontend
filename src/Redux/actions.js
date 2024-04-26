@@ -22,7 +22,7 @@ export const getAllposts = () => async (action) => {
   catch (error) {
     action({
       type: "failure",
-      message:error.message
+      message: error.message
     })
 
   }
@@ -221,7 +221,7 @@ export const userLogin = (formData) => async (action) => {
     action({
       type: "userLoginSuccess",
       Payload: response.data,
-      message:response.data.message
+      message: response.data.message
     });
 
 
@@ -242,12 +242,12 @@ export const GetProfileAction = (token) => async (action) => {
       type: "GetProfileRequest"
     });
 
-    const response = await axios.get("http://localhost:4599/user/GetProfile",{
+    const response = await axios.get("http://localhost:4599/user/GetProfile", {
       headers: {
         Authorization: `Bearer ${token}`
-    }
+      }
     });
-     
+
     action({
       type: "GetProfileSuccess",
       Payload: response.data,
@@ -262,6 +262,33 @@ export const GetProfileAction = (token) => async (action) => {
       message: error.message
     });
 
+  }
+
+}
+
+
+
+export const getReelsAction = () => async (action) => {
+
+  try {
+    action({
+      type: "getReelsRequest"
+    });
+
+    const response = await axios.get("http://localhost:4599/reels/getreels");
+    console.log(response);
+    console.log("response landi")
+    action({
+      type: "getReelsSuccess",
+      Payload: response.data,
+      message: response.data.message
+    });
+  }
+  catch (error) {
+    action({
+      type: "getReelsFailure",
+      message: error.message
+    });
   }
 
 }
