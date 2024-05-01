@@ -276,8 +276,6 @@ export const getReelsAction = () => async (action) => {
     });
 
     const response = await axios.get("http://localhost:4599/reels/getreels");
-    console.log(response);
-    console.log("response landi")
     action({
       type: "getReelsSuccess",
       Payload: response.data,
@@ -288,6 +286,31 @@ export const getReelsAction = () => async (action) => {
     action({
       type: "getReelsFailure",
       message: error.message
+    });
+  }
+
+}
+
+export const createReelAction = (formData) => async (action) => {
+  try {
+
+    action({
+      type: "createReelRequest"
+    });
+
+    const response = await axios.post("http://localhost:4599/reels/create", formData);
+    const data = response.data
+    action({
+      type: "createReelSuccess",
+      PayloadData: data,
+      Payloadmessage: data.message
+    });
+
+  }
+  catch (error) {
+    action({
+      type: "createReelFailure",
+      Payloadmessage: error.message
     });
   }
 

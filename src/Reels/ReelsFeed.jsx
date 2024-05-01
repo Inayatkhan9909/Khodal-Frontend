@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect,  useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { AddLikeaction, getAllposts, getReelsAction } from '../Redux/actions';
 import { BsThreeDots } from "react-icons/bs";
 import ModifyPost from '../Posts/ModifyPost';
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { CiShare2 } from "react-icons/ci";
 import { FaRegComment } from "react-icons/fa";
 import Loading from '../Shared/Loading';
 import { jwtDecode } from 'jwt-decode';
 import Comments from '../Posts/Comments';
 import timeAgo from '../utils/time';
+import "./Reels.css"
 
 const ReelsFeed = () => {
 
@@ -25,6 +27,17 @@ const ReelsFeed = () => {
     const reels = data
     const postlikemessage = useSelector((state => state.AddlikeStore.message))
 
+ 
+
+    const handleVideoClick = (e) => {
+        const video = e.target;
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    };
+
     console.log(data)
     useEffect(() => {
         if (data && data.reels) {
@@ -38,7 +51,7 @@ const ReelsFeed = () => {
     }, [data, userId])
 
     useEffect(() => {
-        dispatch(getReelsAction()) 
+        dispatch(getReelsAction())
 
     }, [dispatch, changeLikedata])
 
@@ -47,7 +60,6 @@ const ReelsFeed = () => {
             <div><Loading /></div>
         )
     }
-    // console.log(posts)
 
     const handlemodify = (index) => {
 
@@ -80,55 +92,44 @@ const ReelsFeed = () => {
         setshowcommentIndex(prevIndex => prevIndex === index ? null : index);
     }
 
+
     return (
         <>
-
-            {
-
-                reels.reels.map((post, index) => (
-
-                    <div className="card" key={index}>
-                        <div className="post_heading">
-
-                            <div className='username_postadded'><h3>{post.author}</h3> <span> added a new post</span></div>
-                            <button onClick={() => handlemodify(index)}> <BsThreeDots size={22} /></button>
-                            {showmodifyindex === index ? <ModifyPost postId={post._id} /> : null}
-
-                        </div>
-                        <div className="caption-time">
-
-                            <p>{timeAgo(post.CreatedAt)}</p>
-                            <p>{post.caption}</p>
-
-                        </div>
-                        <div className="post_image_container">
-                            <video src={post.videourl} autoPlay controls>vi</video>
-                        </div>
-
-                        <div className="reactioncount">
-
-                            <span>{post.likedby.length} likes</span>
-                            <span>{post.comments.length} comments</span>
-
-                        </div>
-                        <div className="like-comment">
-
-                            <div className="like" onClick={() => likehandle(post._id, index)} >
-                                {likedReels[index] ? <AiFillLike style={{ fill: 'blue' }} size={30} /> : <AiOutlineLike size={30} />}
+            <div className="reels_feed_container" >
+                {reels.reels.map((post, index) => (
+                    <div className="reel_card" key={index}>
+                        <div className="reel_video_container">
+                            <video src={post.videourl} autoPlay loop playsInline onClick={handleVideoClick}></video>
+                            <div className="reel_details">
+                                <div className='username_reel'><h3>{post.author}</h3> <span>Follow </span></div>
+                                <p>{timeAgo(post.CreatedAt)}</p>
+                                <p>{post.caption}</p>
+                                <div className="like_comment_show">
+                                    <span>{post.likedby.length} likes</span>
+                                    <span>{post.comments.length} comments</span>
+                                </div>
                             </div>
-
-                            <div className="comment">
-                                <button onClick={() => handleComment(index)}> <FaRegComment size={30} /></button>
-                                {showcommentIndex === index && <Comments showcommentIndex={showcommentIndex} setshowcommentIndex={setshowcommentIndex}
-                                    postId={post._id} />}
-                            </div>
-
                         </div>
+                        <section className="Action_section">
+                            <div className="reel_like" onClick={() => likehandle(post._id, index)}>
+                                {likedReels[index] ? <AiFillLike style={{ fill: 'blue' }} size={30} /> : <AiOutlineLike fill='white' size={30} />}
+                            </div>
+                            <div className="reel_comment">
+                                <button onClick={() => handleComment(index)}> <FaRegComment fill='white' size={30} /></button>
+                                {showcommentIndex === index && <Comments showcommentIndex={showcommentIndex} setshowcommentIndex={setshowcommentIndex} postId={post._id} />}
+                            </div>
+                            <div className="reel_share">
+                                <button><CiShare2 fill='white' size={30} /></button>
+                            </div>
+                            <div className="reel_modify">
+                                <button onClick={() => handlemodify(index)}> <BsThreeDots size={22} fill='white' /></button>
+                                {showmodifyindex === index ? <ModifyPost postId={post._id} /> : null}
+                            </div>
+                        </section>
                     </div>
+                ))}
+            </div>
 
-                ))
-
-            }
         </>
     )
 }

@@ -24,6 +24,7 @@ const Home = () => {
 
                         <li><Link to=""><span><IoHomeOutline /></span><span>Home</span></Link></li>
                         <li><Link to="/reels/feed">< BsCameraReels /><span>Reels</span></Link></li>
+                        <li><Link to="/reels/create">< BsCameraReels /><span>create Reels</span></Link></li>
                         <li><Link to="/user/createpost"><CiSquarePlus /><span>Create</span></Link></li>
                         <li><Link to="/user/profile"><CgProfile /><span>Profile</span></Link></li>
                         <li><Link to=""><LiaUserFriendsSolid /><span>Friends</span></Link></li>

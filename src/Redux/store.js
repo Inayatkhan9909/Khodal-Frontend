@@ -3,7 +3,8 @@ import {
        getPostsreducer, createPostreducer, userRegisterreducer,
        userLoginreducer, DeletePostreducer, GetPostbyIdreducer,
        EditPostreducer, AddLikereducer, Addcommentreducer, GetProfilereducer,
-       getReelsreducer
+       getReelsreducer,
+       createReelreducer
 } from "./reducers";
 
 
@@ -20,6 +21,7 @@ export const store = configureStore({
               AddlikeStore: AddLikereducer,
               AddcommentStore: Addcommentreducer,
               AddProfileStore: GetProfilereducer,
-              getReelsStore:getReelsreducer 
+              getReelsStore:getReelsreducer,
+              createReelStore:createReelreducer 
        }
 });

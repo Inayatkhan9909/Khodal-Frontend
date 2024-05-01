@@ -174,3 +174,18 @@ export const getReelsreducer = createReducer({}, (builder) => {
             state.message = action.message
         })
 });
+
+export const createReelreducer = createReducer({}, (builder) => {
+    builder.addCase("createReelRequest", (state) => {
+        state.loading = true
+    })
+        .addCase("createReelSuccess", (state, action) => {
+            state.loading = false
+            state.data = action.Payload
+            state.message = action.message
+        })
+        .addCase("createReelFailure", (state, action) => {
+            state.loading = false
+            state.message = action.message
+        })
+});

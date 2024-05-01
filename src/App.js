@@ -12,6 +12,7 @@ import SinglePost from "./Shared/SinglePost";
 import CompleteProfile from "./User/CompleteProfile";
 import EditProfile from "./User/EditProfile";
 import ReelsFeed from "./Reels/ReelsFeed";
+import CreateReel from "./Reels/CreateReel";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
 
 
         <Route path="/reels/feed" element={<ReelsFeed/>} />
+        <Route path="/reels/create" element={<CreateReel/>} />
 
       </Routes>
     </BrowserRouter>
