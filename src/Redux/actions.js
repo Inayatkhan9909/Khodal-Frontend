@@ -265,6 +265,32 @@ export const GetProfileAction = (token) => async (action) => {
   }
 
 }
+export const GetProfilebyUsernameAction = (username) => async (action) => {
+
+  try {
+    action({
+      type: "GetProfilebyUsernameRequest"
+    });
+
+    const response = await axios.get(`http://localhost:4599/user/getprofilebyusername?username=${username}`);
+
+    action({
+      type: "GetProfilebyUsernameSuccess",
+      Payload: response.data,
+      message: response.data.message
+    });
+
+  }
+  catch (error) {
+
+    action({
+      type: "GetProfilebyUsernameFailure",
+      message: error.message
+    });
+
+  }
+
+}
 
 
 
@@ -314,4 +340,28 @@ export const createReelAction = (formData) => async (action) => {
     });
   }
 
+}
+
+
+const followuserAction = (token,followed) => async(action)=>{
+  try {
+    
+    action({
+      type: "followuserRequest"
+    });
+
+    const response = await axios.post("http://localhost:4599/user/follow", {token,followed});
+    const data = response.data
+    action({
+      type: "followuserSuccess",
+      PayloadData: data,
+      Payloadmessage: data.message
+    });
+  } 
+  catch (error) {
+    action({
+    type: "followuserFailure",
+    Payloadmessage: error.message
+  });
+  }
 }

@@ -160,6 +160,21 @@ export const GetProfilereducer = createReducer({}, (builder) => {
         })
 });
 
+export const GetProfilebyUsernamereducer = createReducer({}, (builder) => {
+    builder.addCase("GetProfilebyUsernameRequest", (state) => {
+        state.loading = true
+    })
+        .addCase("GetProfilebyUsernameSuccess", (state, action) => {
+            state.loading = false
+            state.data = action.Payload
+            state.message = action.message
+        })
+        .addCase("GetProfilebyUsernameFailure", (state, action) => {
+            state.loading = false
+            state.message = action.message
+        })
+});
+
 export const getReelsreducer = createReducer({}, (builder) => {
     builder.addCase("getReelsRequest", (state) => {
         state.loading = true
@@ -185,6 +200,21 @@ export const createReelreducer = createReducer({}, (builder) => {
             state.message = action.message
         })
         .addCase("createReelFailure", (state, action) => {
+            state.loading = false
+            state.message = action.message
+        })
+});
+
+export const followUserreducer = createReducer({}, (builder) => {
+    builder.addCase("followuserRequest", (state) => {
+        state.loading = true
+    })
+        .addCase("followuserSuccess", (state, action) => {
+            state.loading = false
+            state.data = action.Payload
+            state.message = action.message
+        })
+        .addCase("followuserFailure", (state, action) => {
             state.loading = false
             state.message = action.message
         })

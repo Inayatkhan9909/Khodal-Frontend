@@ -13,6 +13,7 @@ import CompleteProfile from "./User/CompleteProfile";
 import EditProfile from "./User/EditProfile";
 import ReelsFeed from "./Reels/ReelsFeed";
 import CreateReel from "./Reels/CreateReel";
+import OthersProfile from "./User/OthersProfile";
 
 
 function App() {
@@ -27,8 +28,9 @@ function App() {
         <Route path="/user/createpost" element={<CreatePost/>} />
         <Route path="/user/completeprofile" element={<CompleteProfile/>} />
         <Route path="/user/editprofile" element={<EditProfile/>} />
+        <Route path="/user/othersprofile/:username" element={<OthersProfile/>} />
 
-        
+
         <Route path="/posts/modifypost" element={<ModifyPost/>} />
         <Route path="/posts/editpost" element={<EditPost/>} />
         <Route path="/posts/viewpost" element={<SinglePost/>} />

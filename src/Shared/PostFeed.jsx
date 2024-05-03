@@ -5,11 +5,13 @@ import { AddLikeaction, getAllposts } from '../Redux/actions';
 import { BsThreeDots } from "react-icons/bs";
 import ModifyPost from '../Posts/ModifyPost';
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { CgProfile } from "react-icons/cg";
 import { FaRegComment } from "react-icons/fa";
 import Loading from './Loading';
 import { jwtDecode } from 'jwt-decode';
 import Comments from '../Posts/Comments';
 import timeAgo from '../utils/time';
+import { Link } from 'react-router-dom'
 
 
 const PostFeed = () => {
@@ -50,13 +52,11 @@ const PostFeed = () => {
             <div><Loading /></div>
         )
     }
-    // console.log(posts)
-
+    console.log(posts.posts)
     const handlemodify = (index) => {
 
         setshowmodifyindex(previndex => previndex === index ? null : index);
     }
-
 
     const likehandle = (postId, index) => {
 
@@ -77,33 +77,39 @@ const PostFeed = () => {
 
     }
 
-
     const handleComment = (index) => {
-
         setshowcommentIndex(prevIndex => prevIndex === index ? null : index);
     }
     return (
         <>
-
-
             {
-
                 posts.posts.map((post, index) => (
 
                     <div className="card" key={index}>
                         <div className="post_heading">
 
-                            <div className='username_postadded'><h3>{post.author}</h3> <span> added a new post</span></div>
+                            <div className='username_postadded'>
+
+                                <Link to={`/user/othersprofile/${post.author}`}>
+                                    {post.userProfile ? <img src={post.userProfile} width={25} alt="" /> :
+                                        <CgProfile size={25} />}
+                                    <h3>{post.author}</h3>
+                                </Link>
+                                <span> added a new post</span>
+
+                            </div>
                             <button onClick={() => handlemodify(index)}> <BsThreeDots size={22} /></button>
                             {showmodifyindex === index ? <ModifyPost postId={post._id} /> : null}
 
                         </div>
+
                         <div className="caption-time">
 
                             <p>{timeAgo(post.CreatedAt)}</p>
                             <p>{post.caption}</p>
 
                         </div>
+
                         <div className="post_image_container">
                             <img src={post.imageurl} width={100} alt="no" />
                         </div>
@@ -114,6 +120,7 @@ const PostFeed = () => {
                             <span>{post.comments.length} comments</span>
 
                         </div>
+
                         <div className="like-comment">
 
                             <div className="like" onClick={() => likehandle(post._id, index)} >
@@ -127,6 +134,7 @@ const PostFeed = () => {
                             </div>
 
                         </div>
+
                     </div>
 
                 ))

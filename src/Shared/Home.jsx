@@ -12,11 +12,8 @@ import PostFeed from './PostFeed';
 
 const Home = () => {
 
-
     return (
         <>
-
-
             <div className='home-container' >
 
                 <div className="home-navbar">
@@ -41,11 +38,7 @@ const Home = () => {
                 </div>
 
             </div>
-
-
         </>
-
-
 
     )
 }

@@ -20,8 +20,8 @@ const UserPosts = () => {
     const [showcommentIndex, setshowcommentIndex] = useState(null);
     const dispatch = useDispatch();
     const postlikemessage = useSelector((state => state.AddlikeStore.message))
-    const data = useSelector((state) => state.getPosts.posts);
-    const posts = data
+    const data = useSelector((state) => state.getPosts);
+    const posts = data.posts
     console.log(posts)
     const token = localStorage.getItem('token');
     const decodedToken = jwtDecode(token);
@@ -61,7 +61,7 @@ const UserPosts = () => {
 
     }, [dispatch, changeLikedata])
 
-    if (!posts) {
+    if (!data) {
         return (
             <div><Loading /></div>
         )
@@ -101,10 +101,6 @@ const UserPosts = () => {
 
     return (
         <>
-
-            
-
-
                 {
 
                     singlepost.map((post, index) => (
@@ -153,10 +149,6 @@ const UserPosts = () => {
                     ))
 
                 }
-
-
-           
-
         </>
     )
 }

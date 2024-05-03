@@ -4,8 +4,11 @@ import {
        userLoginreducer, DeletePostreducer, GetPostbyIdreducer,
        EditPostreducer, AddLikereducer, Addcommentreducer, GetProfilereducer,
        getReelsreducer,
-       createReelreducer
+       createReelreducer,
+       followUserreducer,
+       GetProfilebyUsernamereducer
 } from "./reducers";
+import { GetProfilebyUsernameAction } from "./actions";
 
 
 export const store = configureStore({
@@ -22,6 +25,8 @@ export const store = configureStore({
               AddcommentStore: Addcommentreducer,
               AddProfileStore: GetProfilereducer,
               getReelsStore:getReelsreducer,
-              createReelStore:createReelreducer 
+              createReelStore:createReelreducer,
+              followuserStore:followUserreducer,
+              GetProfilebyUsernameStore:GetProfilebyUsernamereducer
        }
 });

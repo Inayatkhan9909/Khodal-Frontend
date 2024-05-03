@@ -8,6 +8,7 @@ import { CgProfile } from "react-icons/cg";
 import axios from 'axios';
 import ProfileDetails from './ProfileDetails';
 import UserPosts from './UserPosts';
+import { followUserreducer } from '../Redux/reducers';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -25,7 +26,6 @@ const Profile = () => {
 
   const response = useSelector((state) => state.AddProfileStore);
   const user = response.data
-
 
   useEffect(() => {
     if (token !== null) {
@@ -138,12 +138,23 @@ const Profile = () => {
 
   }
 
+  const handleFollow =()=>{
+    try {
+      
+      dispatch(followUserreducer(token));
+
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   return (
     <div className='profile-container'>
+
       <div className="profile_details_overall">
         {
-
 
           user && <div className="profile-details">
 
@@ -207,7 +218,7 @@ const Profile = () => {
 
                   <div className="follow_button_container">
 
-                    <button>follow</button>
+                    <button onClick={handleFollow}>follow</button>
                     <button>Message</button>
 
                   </div>
@@ -237,7 +248,6 @@ const Profile = () => {
                         ></textarea>
 
                         <button type='submit'>Update</button>
-
 
                       </form> :
 
@@ -271,7 +281,7 @@ const Profile = () => {
       </div>
 
       <div className="user_posts_container">
-        <UserPosts/>
+        {/* <UserPosts /> */}
       </div>
 
     </div>

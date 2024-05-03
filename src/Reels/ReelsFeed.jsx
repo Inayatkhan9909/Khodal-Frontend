@@ -1,4 +1,4 @@
-import React, { useEffect,  useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { AddLikeaction, getAllposts, getReelsAction } from '../Redux/actions';
 import { BsThreeDots } from "react-icons/bs";
@@ -22,12 +22,10 @@ const ReelsFeed = () => {
     const token = localStorage.getItem('token');
     const decodedToken = jwtDecode(token);
     const userId = decodedToken.userId;
-
     const data = useSelector((state) => state.getReelsStore.data);
     const reels = data
     const postlikemessage = useSelector((state => state.AddlikeStore.message))
 
- 
 
     const handleVideoClick = (e) => {
         const video = e.target;
