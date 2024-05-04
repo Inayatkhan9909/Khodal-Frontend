@@ -9,6 +9,7 @@ import axios from 'axios';
 import ProfileDetails from './ProfileDetails';
 import UserPosts from './UserPosts';
 import { followUserreducer } from '../Redux/reducers';
+import { jwtDecode } from 'jwt-decode'
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -41,6 +42,8 @@ const Profile = () => {
     }
   }, [user]);
 
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.userId;
 
   if (!response) {
 
@@ -280,9 +283,19 @@ const Profile = () => {
 
       </div>
 
-      <div className="user_posts_container">
-        {/* <UserPosts /> */}
+<div className="user_content">
+   
+   <div className="user-content_type">
+    <button>Posts</button>
+    <button>Reels</button>
+   </div>
+
+<div className="user_posts_container">
+        
+        <UserPosts userId={userId} />
       </div>
+
+</div>
 
     </div>
   )
