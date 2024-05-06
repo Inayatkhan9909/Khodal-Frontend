@@ -8,6 +8,7 @@ import { CgProfile } from "react-icons/cg";
 import axios from 'axios';
 import ProfileDetails from './ProfileDetails';
 import UserPosts from './UserPosts';
+import UserReels from './UserReels';
 import { followUserreducer } from '../Redux/reducers';
 import { jwtDecode } from 'jwt-decode'
 
@@ -24,6 +25,7 @@ const Profile = () => {
   const [showUpload, setshowUpload] = useState(true);
   const [loadingAbout, setloadingAbout] = useState(false);
   const [loadingprofile, setloadingprofile] = useState(false);
+  const [showReels,setshowReels]= useState(false);
 
   const response = useSelector((state) => state.AddProfileStore);
   const user = response.data
@@ -141,15 +143,25 @@ const Profile = () => {
 
   }
 
-  const handleFollow =()=>{
+  const handleFollow = () => {
     try {
-      
+
       dispatch(followUserreducer(token));
 
 
     } catch (error) {
       console.log(error);
     }
+  }
+
+  
+
+  const handlePosts = () =>{
+      setshowReels(false);
+  }
+
+  const handleReels = ()=>{
+    setshowReels(true);
   }
 
 
@@ -283,19 +295,19 @@ const Profile = () => {
 
       </div>
 
-<div className="user_content">
-   
-   <div className="user-content_type">
-    <button>Posts</button>
-    <button>Reels</button>
-   </div>
+      <div className="user_content">
 
-<div className="user_posts_container">
-        
-        <UserPosts userId={userId} />
+        <div className="user-content_type">
+          <button onClick={handlePosts}>Home</button>
+          <button onClick={handleReels}>Reels</button>
+        </div>
+
+        <div className="user_posts_container">
+
+            {showReels ? <UserReels userId={userId} /> : <UserPosts userId={userId} />}  
+        </div>
+
       </div>
-
-</div>
 
     </div>
   )
