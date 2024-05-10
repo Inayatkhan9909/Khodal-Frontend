@@ -29,7 +29,6 @@ const PostFeed = () => {
     const posts = data
     const postlikemessage = useSelector((state => state.AddlikeStore.message))
 
-
     useEffect(() => {
         if (data && data.posts) {
             const initialLikedStatus = data.posts.map((post) => {
@@ -42,17 +41,6 @@ const PostFeed = () => {
 
     }, [data, userId])
 
-    useEffect(() => {
-        dispatch(getAllposts())
-
-    }, [dispatch, changeLikedata])
-
-    if (!posts) {
-        return (
-            <div><Loading /></div>
-        )
-    }
-    console.log(posts.posts)
     const handlemodify = (index) => {
 
         setshowmodifyindex(previndex => previndex === index ? null : index);
@@ -62,7 +50,6 @@ const PostFeed = () => {
 
         dispatch(AddLikeaction(postId, token))
         if (postlikemessage) {
-
             setchangeLikedata(!changeLikedata)
         }
         else {
@@ -77,9 +64,21 @@ const PostFeed = () => {
 
     }
 
+    useEffect(() => {
+        dispatch(getAllposts())
+
+    }, [dispatch, likehandle,handlemodify])
+
+    if (!posts) {
+        return (
+            <div><Loading /></div>
+        )
+    }
+
     const handleComment = (index) => {
         setshowcommentIndex(prevIndex => prevIndex === index ? null : index);
     }
+
     return (
         <>
             {
@@ -95,6 +94,7 @@ const PostFeed = () => {
                                         <CgProfile size={25} />}
                                     <h3>{post.author}</h3>
                                 </Link>
+
                                 <span> added a new post</span>
 
                             </div>

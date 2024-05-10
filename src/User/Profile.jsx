@@ -25,7 +25,7 @@ const Profile = () => {
   const [showUpload, setshowUpload] = useState(true);
   const [loadingAbout, setloadingAbout] = useState(false);
   const [loadingprofile, setloadingprofile] = useState(false);
-  const [showReels,setshowReels]= useState(false);
+  const [showReels, setshowReels] = useState(false);
 
   const response = useSelector((state) => state.AddProfileStore);
   const user = response.data
@@ -75,9 +75,16 @@ const Profile = () => {
   };
 
   const handleLinkClick = () => {
-    fileInputRef.current.click();
-  };
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+    else {
 
+      alert("You have change your profile recently. Please try again later.");
+
+    }
+
+  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -143,24 +150,11 @@ const Profile = () => {
 
   }
 
-  const handleFollow = () => {
-    try {
-
-      dispatch(followUserreducer(token));
-
-
-    } catch (error) {
-      console.log(error);
-    }
+  const handlePosts = () => {
+    setshowReels(false);
   }
 
-  
-
-  const handlePosts = () =>{
-      setshowReels(false);
-  }
-
-  const handleReels = ()=>{
+  const handleReels = () => {
     setshowReels(true);
   }
 
@@ -231,12 +225,12 @@ const Profile = () => {
 
                   </div>
 
-                  <div className="follow_button_container">
+                  {/* <div className="follow_button_container">
 
                     <button onClick={handleFollow}>follow</button>
                     <button>Message</button>
 
-                  </div>
+                  </div> */}
 
                 </div>
 
@@ -302,10 +296,12 @@ const Profile = () => {
           <button onClick={handleReels}>Reels</button>
         </div>
 
+
         <div className="user_posts_container">
 
-            {showReels ? <UserReels userId={userId} /> : <UserPosts userId={userId} />}  
+          {showReels ? <UserReels userId={userId} /> : <UserPosts userId={userId} />}
         </div>
+
 
       </div>
 

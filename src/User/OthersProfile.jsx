@@ -7,18 +7,36 @@ import "./Form.css"
 import { CgProfile } from "react-icons/cg";
 import ProfileDetails from './ProfileDetails';
 import UserPosts from './UserPosts';
-import { followUserreducer } from '../Redux/reducers';
+import { followuserAction } from '../Redux/actions';
 import { useParams } from 'react-router-dom';
+import UserReels from './UserReels';
+import { jwtDecode } from 'jwt-decode'
 
 const OthersProfile = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
+  const [showReels, setshowReels] = useState(false);
+  const [alreadyfollowd,setalreadyfollowed] = useState(false);
   const response = useSelector((state) => state.GetProfilebyUsernameStore);
   const Clickeduser = response.data
   console.log(Clickeduser)
   const { username } = useParams();
+  const token = localStorage.getItem("token");
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.userId;
+
+  const handleFollow = () => {
+    try {
+
+      dispatch(followuserAction(username,token));
+
+
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
 
 
   useEffect(() => {
@@ -27,7 +45,7 @@ const OthersProfile = () => {
       dispatch(GetProfilebyUsernameAction(username))
 
     }
-  }, [dispatch, username])
+  }, [dispatch, username,handleFollow])
 
 
   if (!Clickeduser) {
@@ -37,15 +55,13 @@ const OthersProfile = () => {
     )
   }
 
-  const handleFollow = () => {
-    try {
 
-      dispatch(followUserreducer(token));
+  const handlePosts = () => {
+    setshowReels(false);
+  }
 
-
-    } catch (error) {
-      console.log(error);
-    }
+  const handleReels = () => {
+    setshowReels(true);
   }
   return (
     <>
@@ -54,14 +70,14 @@ const OthersProfile = () => {
 
         <div className="profile_details_overall">
           {
-
-            Clickeduser && <div className="profile-details">
+            Clickeduser.user && <div className="profile-details">
 
               <div className="profile-main-content">
 
                 {
 
                   <div className='profilepic-div'>
+
                     {Clickeduser.user.profilepic ? <img src={Clickeduser.user.profilepic} className='profilepic_img' alt="Profile" /> : <CgProfile size={100} />}
 
                   </div>
@@ -70,9 +86,7 @@ const OthersProfile = () => {
                 <div className="name_username_container">
 
                   <div className='profile-name'>
-
                     <span>{Clickeduser.user.fullname}</span>
-
                   </div>
 
                   <div className="username">
@@ -94,10 +108,8 @@ const OthersProfile = () => {
                     </div>
 
                     <div className="follow_button_container">
-
                       <button onClick={handleFollow}>follow</button>
                       <button>Message</button>
-
                     </div>
 
                   </div>
@@ -122,13 +134,10 @@ const OthersProfile = () => {
               </div>
 
             </div>
-
           }
-
           <div className='profile_details2'>
             {
-              Clickeduser && <div className='profile-details_form'>
-
+              Clickeduser.user && <div className='profile-details_form'>
 
                 <div className="profile_details_oll_container">
                   <section className='profile_details_oll'><span className='s1'><strong>Email</strong> : </span> <span> {Clickeduser.user.email ? Clickeduser.user.email : <span>NA</span>} </span> </section>
@@ -148,12 +157,12 @@ const OthersProfile = () => {
         <div className="user_content">
 
           <div className="user-content_type">
-            <button>Posts</button>
-            <button>Reels</button>
+            <button onClick={handlePosts}>Home</button>
+            <button onClick={handleReels}>Reels</button>
           </div>
 
-          <div className="user_posts_container" >
-            <UserPosts userId={Clickeduser.user._id} />
+          <div className="user_posts_container">
+            {showReels ? <UserReels userId={Clickeduser.user && Clickeduser.user._id} /> : <UserPosts userId={Clickeduser.user && Clickeduser.user._id} />}
           </div>
 
         </div>

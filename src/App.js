@@ -14,6 +14,7 @@ import EditProfile from "./User/EditProfile";
 import ReelsFeed from "./Reels/ReelsFeed";
 import CreateReel from "./Reels/CreateReel";
 import OthersProfile from "./User/OthersProfile";
+import Create from "./Shared/Create";
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/create" element={<Create/>} />
         <Route path="/user/register" element={<Register/>} />
         <Route path="/user/login" element={<Login/>} />
         <Route path="/user/profile" element={<Profile/>} />

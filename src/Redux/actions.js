@@ -343,14 +343,14 @@ export const createReelAction = (formData) => async (action) => {
 }
 
 
-const followuserAction = (token,followed) => async(action)=>{
+export const followuserAction = (username,token) => async(action)=>{
   try {
     
     action({
       type: "followuserRequest"
     });
 
-    const response = await axios.post("http://localhost:4599/user/follow", {token,followed});
+    const response = await axios.post("http://localhost:4599/user/follow", {username,token});
     const data = response.data
     action({
       type: "followuserSuccess",

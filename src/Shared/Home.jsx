@@ -9,17 +9,17 @@ import { LiaUserFriendsSolid } from "react-icons/lia";
 import PostFeed from './PostFeed';
 import ReelsFeed from '../Reels/ReelsFeed'
 
-  
+
 
 const Home = () => {
-    const [showReels,setshowReels]= useState(false);
+    const [showReels, setshowReels] = useState(false);
 
-    const handleHome = () =>{
+    const handleHome = () => {
         setshowReels(false);
     }
 
-    const handleReels = ()=>{
-      setshowReels(true);
+    const handleReels = () => {
+        setshowReels(true);
     }
 
     return (
@@ -29,10 +29,9 @@ const Home = () => {
                 <div className="home-navbar">
                     <ul>
 
-                        <li><button onClick={handleHome}><span>Home</span></button></li>
-                        <li><button onClick={handleReels}><span>Reels</span></button></li>
-                        <li><Link to="/reels/create">< BsCameraReels /><span>create Reels</span></Link></li>
-                        <li><Link to="/user/createpost"><CiSquarePlus /><span>Create</span></Link></li>
+                        <li><button onClick={handleHome}><IoHomeOutline /><span>Home</span></button></li>
+                        <li><button onClick={handleReels}><BsCameraReels /><span>Reels</span></button></li>
+                        <li><Link to="/create"><CiSquarePlus /><span>Create</span></Link></li>
                         <li><Link to="/user/profile"><CgProfile /><span>Profile</span></Link></li>
                         <li><Link to=""><LiaUserFriendsSolid /><span>Friends</span></Link></li>
                         <li><Link to=""><IoSettingsOutline /><span>Settings</span></Link></li>
@@ -43,11 +42,16 @@ const Home = () => {
 
                 <div className="home-content">
 
-             {
-                showReels ? <ReelsFeed/> : <PostFeed/>
-             }  
+                    {
+                        showReels ? <ReelsFeed /> : <PostFeed />
+                    }
 
                 </div>
+
+                <aside className='home_aside_content'>
+                    messages
+
+                </aside>
 
             </div>
         </>

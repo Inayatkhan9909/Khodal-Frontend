@@ -10,7 +10,9 @@ import Loading from '../Shared/Loading';
 import Comments from '../Posts/Comments';
 import timeAgo from '../utils/time';
 
-const UserPosts = ({userId}) => {
+
+
+const UserPosts = ({ userId }) => {
 
     const [singlepost, setsinglepost] = useState([]);
     const [showmodifyindex, setshowmodifyindex] = useState(false);
@@ -30,13 +32,13 @@ const UserPosts = ({userId}) => {
     useEffect(() => {
         if (Allposts.posts) {
             const userPosts = Allposts.posts.posts.filter(post => post.user === userId);
-         
+
             if (userPosts) {
                 userPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
                 setsinglepost(userPosts);
-              
+
             }
-            
+
         }
     }, [Allposts.posts]);
 
@@ -98,7 +100,7 @@ const UserPosts = ({userId}) => {
 
     return (
         <>
-           {
+            {
 
                 singlepost.map((post, index) => (
 
@@ -145,7 +147,7 @@ const UserPosts = ({userId}) => {
 
                 ))
 
-            } 
+            }
         </>
     )
 }

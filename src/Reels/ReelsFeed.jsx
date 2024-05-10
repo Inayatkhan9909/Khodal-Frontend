@@ -26,13 +26,12 @@ const ReelsFeed = () => {
     const reels = data
     const postlikemessage = useSelector((state => state.AddlikeStore.message))
 
-
-    const handleVideoClick = (e) => {
+    const handleVideoClick = async(e) => {
         const video = e.target;
         if (video.paused) {
-            video.play();
+           await video.play();
         } else {
-            video.pause();
+           await video.pause();
         }
     };
 
@@ -81,7 +80,6 @@ const ReelsFeed = () => {
             newlikedReels[index] = !newlikedReels[index];
             return newlikedReels;
         });
-
     }
 
 
@@ -97,7 +95,7 @@ const ReelsFeed = () => {
                 {reels.reels.map((post, index) => (
                     <div className="reel_card" key={index}>
                         <div className="reel_video_container">
-                            <video src={post.videourl} autoPlay loop playsInline onClick={handleVideoClick}></video>
+                            <video src={post.videourl} loop playsInline onClick={handleVideoClick}></video>
                             <div className="reel_details">
                                 <div className='username_reel'><h3>{post.author}</h3> <span>Follow </span></div>
                                 <p>{timeAgo(post.CreatedAt)}</p>

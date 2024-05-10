@@ -1,7 +1,7 @@
 .home-container {
   width: 90vw;
   margin: auto;
-
+  display: flex;
 }
 
 .home-navbar {
@@ -47,6 +47,7 @@
         background-color: #555;
         color: white;
       }
+
       >button {
 
         display: flex;
@@ -78,9 +79,21 @@
 
 
 .home-content {
-  width: 50%;
+  width: 45%;
   min-height: 100vh;
   margin: 0px 15vw;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 3vh;
+  padding: 10px;
+}
+
+.home_aside_content {
+  width: 25%;
+  height: 60vh;
+  position: fixed;
+  right: 4vw;
+  top: 15vh;
   background-color: white;
   border-radius: 10px;
   margin-top: 3vh;
@@ -90,10 +103,10 @@
 .card {
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   padding: 20px 10px;
   margin-bottom: 20px;
-  width: 60%;
+  width: 80%;
   margin: 2vh auto;
   display: flex;
   flex-direction: column;
@@ -107,14 +120,14 @@
   margin-bottom: 15px;
 }
 
-.username_postadded{
+.username_postadded {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  
 
-  >a{
+
+  >a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,9 +135,9 @@
     color: black;
     text-decoration: none;
 
-    >img{
+    >img {
       border-radius: 50%;
-   }
+    }
   }
 }
 
@@ -168,8 +181,8 @@
 }
 
 .post_image_container img {
-  width: 100%; 
-  height: 100%; 
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -186,7 +199,7 @@
   display: flex;
   align-items: flex-end;
   width: 90%;
-  gap: 6vw;
+  gap: 120px;
   margin-top: 1vh;
   height: 30px;
 }
@@ -196,6 +209,7 @@
 
   >button {
     border: none;
+    background-color: transparent;
   }
 }
 
@@ -222,4 +236,46 @@
     object-fit: contain;
     margin: auto;
   }
+}
+
+
+/* Create css */
+
+.Create_container {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin: 10vh auto;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.Create_container section {
+  margin-bottom: 10px;
+  border-bottom: 2px solid black;
+}
+
+.Create_container button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  outline: none;
+  font-size: 20px;
+
+}
+
+.Create_container button:hover {
+
+  border-bottom: 3px solid blue;
+}
+
+.create_component {
+
+  border-radius: 5px;
+  padding: 20px;
+
 }

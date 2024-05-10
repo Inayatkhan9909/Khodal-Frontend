@@ -14,7 +14,7 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         margin-bottom: 20px;
        
-        max-width: 50%;
+        max-width: 75%;
         margin: 2vh auto;
         display: flex;
 
@@ -63,6 +63,7 @@
             justify-content: flex-end;
             padding: 10px;
             gap: 15px;
+            z-index: 5;
 
             >.reel_comment{
                 
@@ -95,18 +96,6 @@
 
 }
 
-/* @media (max-width: 768px) {
-    .reel_card {
-        width: calc(50% - 20px);
-
-    }
-}
-
-@media (max-width: 480px) {
-    .reel_card {
-        width: 100%;
-    }
-} */
 
 .reels_feed_container {
     overflow-x: scroll;

@@ -9,7 +9,7 @@ import { DeletePost } from '../Redux/actions';
 import { ToastContainer,toast } from 'react-toastify';
 
 
-const ModifyPost = ({ postId }) => {
+const ModifyPost = ({ postId}) => {
     IsAuthenticated();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -27,7 +27,8 @@ const ModifyPost = ({ postId }) => {
             console.log(response);
             if (response === "post deleted succesfully") {
                 toast.success(response)
-                navigate("/")
+               
+                navigate("/");
             }
             else {
                 toast.error(response)
